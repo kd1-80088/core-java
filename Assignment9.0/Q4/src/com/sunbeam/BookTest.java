@@ -60,9 +60,9 @@ public class BookTest {
 				break;
 			case 4: {
 				Book key = new Book();
-//				Scanner sc = new Scanner(System.in);
-//				String isbn = sc.next();
-				key.setIsbn("123");
+				Scanner sc = new Scanner(System.in);
+				String isbn = sc.next();
+				key.setIsbn(isbn);
 				if (arr.contains(key))
 					System.out.println("Found");
 				else

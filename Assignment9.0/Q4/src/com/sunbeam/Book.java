@@ -72,7 +72,7 @@ public class Book implements Comparable<Book> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(authorName, isbn, price, quantity);
+		return Objects.hash(isbn);
 	}
 
 	@Override
@@ -84,13 +84,13 @@ public class Book implements Comparable<Book> {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return Objects.equals(authorName, other.authorName) && Objects.equals(isbn, other.isbn)
-				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity;
+		return Objects.equals(isbn, other.isbn);
 	}
 
+	@Override
 	public int compareTo(Book b) {
-		//int diff = this.price-b.getPrice();
-		return 0;
-	};
+		int diff = this.isbn.compareTo(b.getIsbn());
+		return diff;
+	}
 
 }
