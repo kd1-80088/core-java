@@ -1,6 +1,6 @@
 package com.sunbeam;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class User {
 	private int id;
@@ -8,14 +8,14 @@ public class User {
 	private String lname;
 	private String email;
 	private String passwd;
-	private String dob;
+	private java.util.Date dob;
 	private boolean status;
 	private String role;
 
 	public User() {
 	}
 
-	public User(int id, String fname, String lname, String email, String passwd, String dob, boolean status,
+	public User(int id, String fname, String lname, String email, String passwd, Date dob, boolean status,
 			String role) {
 		this.id = id;
 		this.fname = fname;
@@ -67,11 +67,11 @@ public class User {
 		this.passwd = passwd;
 	}
 
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDao implements AutoCloseable {
@@ -31,10 +32,7 @@ public class UserDao implements AutoCloseable {
 			stmt.setString(2, user.getLname());
 			stmt.setString(3, user.getEmail());
 			stmt.setString(4, user.getPasswd());
-
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			java.util.Date uDate = sdf.parse(user.getDob());
-			java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+			java.sql.Date sDate = new java.sql.Date(user.getDob().getTime());
 
 			stmt.setDate(5, sDate);
 			int cnt = stmt.executeUpdate();
@@ -75,11 +73,11 @@ public class UserDao implements AutoCloseable {
 					String lname = rs.getString("last_name");
 					String email = rs.getString("email");
 					String passwd = rs.getString("password");
-					String dob = rs.getString("dob");
 					boolean status = rs.getBoolean("status");
 					String role = rs.getString("role");
-
-					User user = new User(id, fname, lname, email, passwd, dob, status, role);
+					java.sql.Date sDate = rs.getDate("dob");
+					java.util.Date uDate = new Date(sDate.getTime());
+					User user = new User(id, fname, lname, email, passwd, uDate, status, role);
 					list.add(user);
 
 				}
@@ -101,11 +99,13 @@ public class UserDao implements AutoCloseable {
 					String lname = rs.getString("last_name");
 					String email = rs.getString("email");
 					String passwd = rs.getString("password");
-					String dob = rs.getString("dob");
 					boolean status = rs.getBoolean("status");
 					String role = rs.getString("role");
 
-					User user1 = new User(id, fname, lname, email, passwd, dob, status, role);
+					java.sql.Date sDate = rs.getDate("dob");
+					java.util.Date uDate = new Date(sDate.getTime());
+
+					User user1 = new User(id, fname, lname, email, passwd, uDate, status, role);
 					list.add(user1);
 
 				}

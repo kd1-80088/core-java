@@ -3,6 +3,7 @@ package com.sunbeam;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,11 +40,13 @@ public class UserMain {
 					System.out.println("Enter Password");
 					String passwd = sc.next();
 					System.out.println("Enter BirthDate");
-					String dob = sc.next();
+					String birthdate = sc.next();
 					user.setFname(fname);
 					user.setLname(lname);
 					user.setEmail(email);
 					user.setPasswd(passwd);
+					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Date dob = sdf.parse(birthdate);
 					user.setDob(dob);
 					int cnt = dao.insertUser(user);
 					System.out.println("User Added :" + cnt);
